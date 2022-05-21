@@ -20,6 +20,14 @@ public class MemoryManager implements Serializable {
         return size;
     }
 
+    public static int getFreeBlocksCount(){
+        int counter = 0;
+        for (int i = 0; i< memoryDisk.length; i++) {
+            if(!memoryDisk[i])counter++;
+        }
+        return counter;
+    }
+
     public static void setSize(int size) {
         MemoryManager.size = size;
     }

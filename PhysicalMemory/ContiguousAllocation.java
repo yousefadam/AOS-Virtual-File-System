@@ -8,35 +8,37 @@ public class ContiguousAllocation implements AllocationStrategy, Serializable {
     private static final long serialVersionUID = "ContiguousAllocation".hashCode();
     @Override
     public ArrayList<Integer> allocate(int size){
+        if(size>MemoryManager.getFreeBlocksCount())return null;
+
         int memorySize = MemoryManager.getSize();
-        boolean[] memoryDisk = MemoryManager.getMemoryDisk();
+        boolean[] memoryDisk = MemoryManager.memoryDisk;
 
-        //start of best block series, first and last block;
-        int bestPos = -1, first = -1, last = -1;
+        int start = -1, minNumBlocks = Integer.MAX_VALUE;
 
+        int counter;
         for (int i = 0; i < memorySize; i++) {
-            if(first == -1 && memoryDisk[i])
-                continue; //did not find an empty block
-
-            if(!memoryDisk[i] && first == -1)
-                first = i; //found first empty block
-
-            if(!memoryDisk[i]){
-                if(last < i-first+1){ //if last is < dist btw i and first
-                    last = i-first+1; //update last
-                    bestPos = first; //update best start
+            counter = 0;
+            if(memoryDisk[i]){
+                continue;
+            }else{
+                for (int j = i; j < memorySize && !memoryDisk[j]; j++){
+                    counter++;
                 }
-            }
-            else{
-                first = -1; // search again
+
+                if(minNumBlocks>counter && counter>=size){
+                    start = i;
+                    minNumBlocks = counter;
+                }
+
+                i += counter;
             }
         }
 
-        if(last<size)return null; //if last exceeds file size
 
+        if(minNumBlocks>MemoryManager.getSize()) return null; //no available series of blocks
         ArrayList<Integer> allocatedBlocks = new ArrayList<>();
 
-        for (int j = 0, i = bestPos; j < size ; ++j, ++i) {
+        for (int j = 0, i = start; j < size ; ++j, ++i) {
             allocatedBlocks.add(i);
         }
 
@@ -44,6 +46,7 @@ public class ContiguousAllocation implements AllocationStrategy, Serializable {
             memoryDisk[i] = true;
         }
 
+        MemoryManager.memoryDisk = memoryDisk;
         return allocatedBlocks;
 
     }

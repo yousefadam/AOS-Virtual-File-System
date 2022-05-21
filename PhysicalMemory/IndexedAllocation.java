@@ -15,6 +15,8 @@ public class IndexedAllocation implements AllocationStrategy, Serializable {
 
     @Override
     public ArrayList<Integer> allocate(int size){
+        if(size + 1 > MemoryManager.getFreeBlocksCount())return null;
+
         int memorySize = MemoryManager.getSize();
         ArrayList<Integer> allocatedData = new ArrayList<>(); //holds allocated data of current allocation
         boolean[] memoryDisk = MemoryManager.memoryDisk;
@@ -24,7 +26,6 @@ public class IndexedAllocation implements AllocationStrategy, Serializable {
             if(!memoryDisk[i]) allocatedData.add(i); //allocate if free
         }
 
-        //if(allocatedData.size()<size + 1) return null; may never happen
 
         for (int i: allocatedData) {
             memoryDisk[i] = true;

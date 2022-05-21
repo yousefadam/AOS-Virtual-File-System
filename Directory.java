@@ -67,6 +67,7 @@ public class Directory implements Serializable {
 
     //delete internal subdirectories
     public void deleteSubDirectory(Directory dir){
+        dir.deleteDirectory();
         subDirectories.remove(dir);
     }
 
@@ -87,6 +88,4 @@ public class Directory implements Serializable {
             directory.displayDirectoryStructure(level + 1);
         }
     }
-
-    //toString??
 }

@@ -15,20 +15,23 @@ public class LinkedAllocation implements AllocationStrategy, Serializable {
 
     @Override
     public ArrayList<Integer> allocate(int size){
+        if(size>MemoryManager.getFreeBlocksCount()) return null;
+
         int memorySize = MemoryManager.getSize();
         ArrayList<Integer> allocatedData = new ArrayList<>(); //holds allocated data of current allocation
         boolean[] memoryDisk = MemoryManager.memoryDisk;
 
         for (int i = 0; i < size; i++) {
-            if(allocatedData.size() >= memorySize) break; //size exceeded disk capacity
             if(!memoryDisk[i]) allocatedData.add(i); //allocate if free
         }
 
-        //if(allocatedData.size()<size) return null; may never happen
+        //[1,5,6,33] 4
 
         for (int i: allocatedData) {
             memoryDisk[i] = true;
         }
+
+        //MemoryManager.memoryDisk = memoryDisk; TEST MEMORY UPDATE!!!!
 
         //will return null if there is no enough space
         return allocatedData;
