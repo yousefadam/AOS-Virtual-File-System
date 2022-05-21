@@ -1,9 +1,12 @@
 package PhysicalMemory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 //implement serialization
-public class LinkedAllocation implements AllocationStrategy {
+public class LinkedAllocation implements AllocationStrategy, Serializable {
+
+    private static final long serialVersionUID = "IndexedAllocation".hashCode();
 
     @Override
     public String toString() {
@@ -13,7 +16,7 @@ public class LinkedAllocation implements AllocationStrategy {
     @Override
     public ArrayList<Integer> allocate(int size){
         int memorySize = MemoryManager.getSize();
-        ArrayList<Integer> allocatedData = new ArrayList<Integer>(); //holds allocated data of current allocation
+        ArrayList<Integer> allocatedData = new ArrayList<>(); //holds allocated data of current allocation
         boolean[] memoryDisk = MemoryManager.memoryDisk;
 
         for (int i = 0; i < size; i++) {
@@ -27,6 +30,7 @@ public class LinkedAllocation implements AllocationStrategy {
             memoryDisk[i] = true;
         }
 
+        //will return null if there is no enough space
         return allocatedData;
     }
 }

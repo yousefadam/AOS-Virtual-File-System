@@ -1,10 +1,12 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Directory {
+public class Directory implements Serializable {
     private String name, dirPath;
     private ArrayList<MyFile> files;
     private ArrayList<Directory> subDirectories;
     private boolean deleted = false;
+    private static final long serialVersionUID = "Directory".hashCode();
 
     public Directory(String dirPath, String name){
         this.dirPath = dirPath;
@@ -23,7 +25,7 @@ public class Directory {
 
     public MyFile getFile(String Name){
         for (MyFile file: files) {
-            if (file.getName() == Name)
+            if (file.getName().equals(Name))
                 return file;
         }
         return null;
@@ -38,7 +40,7 @@ public class Directory {
 
     public Directory getSubDirectory(String dirName){
         for (Directory dir: subDirectories) {
-            if (dir.getName() == dirName)
+            if (dir.getName().equals(dirName))
                 return dir;
         }
         return null;
@@ -78,7 +80,7 @@ public class Directory {
 
         tabs.append('\t');
         for (var file: files) {
-            System.out.println(tabs.toString() + file.getName());
+            System.out.println(tabs + file.getName());
         }
 
         for (var directory: subDirectories) {

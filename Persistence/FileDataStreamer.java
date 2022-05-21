@@ -3,8 +3,8 @@ package Persistence;
 import java.io.*;
 
 //implements serialization
-public class FileDataStreamer{
-    //serialversionUID
+public class FileDataStreamer implements Serializable{
+    private static final long serialVersionUID = "FileDataStreamer".hashCode();
 
     static void writeToFile(Object obj, String filePath) throws Exception {
         FileOutputStream fOut = new FileOutputStream(new File(filePath));

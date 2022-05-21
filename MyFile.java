@@ -1,13 +1,14 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 //implement serializable
-public class MyFile {
+public class MyFile implements Serializable {
     private String name, filePath;
     private boolean deleted;
-    //serialversionUID "MyFile"
+    private static final long serialVersionUID = "MyFile".hashCode();
     private ArrayList<Integer> allocatedBlocks;
 
-    public MyFile(ArrayList<Integer> allocatedBlocks, String filePath) {
+    public MyFile( String filePath, ArrayList<Integer> allocatedBlocks) {
         String[] directories = filePath.split("/");
         this.name = directories[directories.length-1];
         this.filePath = filePath;

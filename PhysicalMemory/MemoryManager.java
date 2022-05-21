@@ -1,13 +1,14 @@
 package PhysicalMemory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MemoryManager {
+public class MemoryManager implements Serializable {
     private static int size;
     public static AllocationStrategy strategy;
     public static boolean[] memoryDisk;
-    //serialVersionUID
+    private static final long serialVersionUID = "MemoryManager".hashCode();
 
     public MemoryManager(int size, AllocationStrategy strategy){
         this.size = size;
