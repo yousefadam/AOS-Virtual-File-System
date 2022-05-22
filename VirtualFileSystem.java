@@ -81,6 +81,7 @@ public class VirtualFileSystem implements Serializable {
     }
 
     boolean createFile(String filePath, int fileSize){
+        //last element of 'directories' will be the name of the file
         String[] directories = filePath.split("/");
 
         //different root
@@ -108,7 +109,7 @@ public class VirtualFileSystem implements Serializable {
         }
 
         //file already exists
-        if(currentDir.getSubDirectory(directories[i]) != null){
+        if(currentDir.getFile(directories[i]) != null){
             System.out.println("A File already exists with this name!");
             return false;
         }
