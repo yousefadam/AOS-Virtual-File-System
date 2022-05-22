@@ -37,4 +37,8 @@ public class MyFile implements Serializable {
     public void deleteFile() {
         this.deleted = true;
     }
+
+    public ArrayList<Integer> getAllocatedBlocks() {
+        return allocatedBlocks;
+    }
 }

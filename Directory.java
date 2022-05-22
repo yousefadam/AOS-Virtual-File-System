@@ -23,6 +23,10 @@ public class Directory implements Serializable {
         files.add(file);
     }
 
+    public ArrayList<MyFile> getFiles() {
+        return files;
+    }
+
     public MyFile getFile(String Name){
         for (MyFile file: files) {
             if (file.getName().equals(Name))

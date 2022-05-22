@@ -149,10 +149,48 @@ public class VirtualFileSystem implements Serializable {
             return false;
         }
 
+        for(var file:target.getFiles()){
+            memoryManager.deAllocateSpace(file.getAllocatedBlocks());
+        }
+
         target.deleteDirectory();
         currentDir.deleteSubDirectory(target);
         displayDiskStructure();
         return true;
+    }
+
+    boolean deleteFile(String filePath){
+        String[] directories = filePath.split("/");
+
+        if(!directories[0].equals("root")){
+            System.out.println("Invalid Path"); //not matching root
+            return false;
+        }
+
+        Directory currentDir = root;
+        int i;
+        for (i = 1; i <directories.length-1 ; i++) {
+            currentDir = currentDir.getSubDirectory(directories[i]);
+            if (currentDir == null){
+                System.out.println("Invalid path");
+                return false;
+            }
+        }
+
+        MyFile target = currentDir.getFile(directories[directories.length-1]);
+
+        if(target == null){
+            System.out.println("No such file or directory");
+            return false;
+        }
+
+        currentDir.deleteFile(target);
+        memoryManager.deAllocateSpace(target.getAllocatedBlocks());
+
+        target.deleteFile();
+        displayDiskStructure();
+        return true;
+
     }
 
     void displayDiskStatus(){
