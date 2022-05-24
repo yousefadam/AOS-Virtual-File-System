@@ -6,6 +6,12 @@ import java.util.ArrayList;
 public class ContiguousAllocation implements AllocationStrategy, Serializable {
 
     private static final long serialVersionUID = "ContiguousAllocation".hashCode();
+
+    @Override
+    public String toString() {
+        return "ContiguousAllocation{}";
+    }
+
     @Override
     public ArrayList<Integer> allocate(int size){
         //will return null if there is no enough space

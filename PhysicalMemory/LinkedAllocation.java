@@ -16,7 +16,7 @@ public class LinkedAllocation implements AllocationStrategy, Serializable {
     @Override
     public ArrayList<Integer> allocate(int size){
         //will return null if there is no enough space
-        if(size>MemoryManager.getFreeBlocksCount()) return null;
+        if(size > MemoryManager.getFreeBlocksCount()) return null;
 
         int memorySize = MemoryManager.getSize();
         ArrayList<Integer> allocatedData = new ArrayList<>(); //holds allocated data of current allocation
