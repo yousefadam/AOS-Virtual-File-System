@@ -34,7 +34,6 @@ public class ContiguousAllocation implements AllocationStrategy, Serializable {
             }
         }
 
-
         if(minNumBlocks>MemoryManager.getSize()) return null; //no available series of blocks
         ArrayList<Integer> allocatedBlocks = new ArrayList<>();
 

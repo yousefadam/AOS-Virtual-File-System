@@ -8,7 +8,7 @@ public class Main {
 
         FileDataStreamer fds  =new FileDataStreamer();
         Scanner scan = new Scanner(System.in);
-        Parser parser = new Parser();
+       
         AllocationStrategy strategy = null;
         VirtualFileSystem vfs = null;
         boolean loaded = true;
@@ -74,10 +74,13 @@ public class Main {
         boolean quit = false;
 
         while (!quit){
+            Parser parser = new Parser();
             input = scan.nextLine();
             parser.parse(input);
             String command = parser.getCmd();
 
+            //System.out.println("Args Size: " + parser.getArgs().size());
+            
             switch(command){
                 case "CreateFile": {
                     if (parser.getArgs().size() == 2)
