@@ -15,6 +15,7 @@ public class IndexedAllocation implements AllocationStrategy, Serializable {
 
     @Override
     public ArrayList<Integer> allocate(int size){
+        //will return null if there is no enough space
         if(size + 1 > MemoryManager.getFreeBlocksCount())return null;
 
         int memorySize = MemoryManager.getSize();

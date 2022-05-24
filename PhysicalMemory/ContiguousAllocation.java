@@ -8,6 +8,7 @@ public class ContiguousAllocation implements AllocationStrategy, Serializable {
     private static final long serialVersionUID = "ContiguousAllocation".hashCode();
     @Override
     public ArrayList<Integer> allocate(int size){
+        //will return null if there is no enough space
         if(size>MemoryManager.getFreeBlocksCount())return null;
 
         int memorySize = MemoryManager.getSize();
@@ -47,6 +48,5 @@ public class ContiguousAllocation implements AllocationStrategy, Serializable {
 
         MemoryManager.memoryDisk = memoryDisk;
         return allocatedBlocks;
-
     }
 }
