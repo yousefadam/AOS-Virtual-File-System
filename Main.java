@@ -78,9 +78,7 @@ public class Main {
             input = scan.nextLine();
             parser.parse(input);
             String command = parser.getCmd();
-
-            //System.out.println("Args Size: " + parser.getArgs().size());
-            
+              
             switch(command){
                 case "CreateFile": {
                     if (parser.getArgs().size() == 2)

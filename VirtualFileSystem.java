@@ -148,10 +148,6 @@ public class VirtualFileSystem implements Serializable {
             return false;
         }
 
-        for (var file : target.getFiles()) {
-            memoryManager.deAllocateSpace(file.getAllocatedBlocks());
-        }
-
         target.deleteDirectory();
         currentDir.deleteSubDirectory(target);
         displayDiskStructure();
