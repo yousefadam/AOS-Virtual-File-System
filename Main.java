@@ -78,7 +78,7 @@ public class Main {
             input = scan.nextLine();
             parser.parse(input);
             String command = parser.getCmd();
-              
+
             switch(command){
                 case "CreateFile": {
                     if (parser.getArgs().size() == 2)
@@ -129,8 +129,6 @@ public class Main {
                 default:
                     System.out.println("Invalid command");
             }
-
-
         }
 
         try {
