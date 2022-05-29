@@ -35,7 +35,7 @@ public class VirtualFileSystem implements Serializable {
         root = new Directory(vfsPath, "root");
     }
 
-    // initial directory????
+    // initial directory
     public VirtualFileSystem(int diskSize, AllocationStrategy strategy) {
         fds = new FileDataStreamer();
         memoryManager = new MemoryManager(diskSize, strategy);

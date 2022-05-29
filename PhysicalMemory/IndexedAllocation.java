@@ -8,10 +8,6 @@ public class IndexedAllocation implements AllocationStrategy, Serializable {
 
     private static final long serialVersionUID = "IndexedAllocation".hashCode();
 
-    @Override
-    public String toString() {
-        return "IndexedAllocation{}";
-    }
 
     @Override
     public ArrayList<Integer> allocate(int size){

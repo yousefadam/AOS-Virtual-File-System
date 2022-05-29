@@ -54,7 +54,7 @@ public class Directory implements Serializable {
     }
 
     //delete the directory itself
-    public void deleteDirectory(){
+    public void deleteDirectory(){  
         this.deleted = true;
 
         for (MyFile file : files) {

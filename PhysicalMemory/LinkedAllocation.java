@@ -9,11 +9,6 @@ public class LinkedAllocation implements AllocationStrategy, Serializable {
     private static final long serialVersionUID = "IndexedAllocation".hashCode();
 
     @Override
-    public String toString() {
-        return "LinkedAllocation{}";
-    }
-
-    @Override
     public ArrayList<Integer> allocate(int size){
         //will return null if there is no enough space
         if(size > MemoryManager.getFreeBlocksCount()) return null;

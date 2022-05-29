@@ -16,16 +16,6 @@ public class MyFile implements Serializable {
         this.allocatedBlocks = allocatedBlocks;
     }
 
-    @Override
-    public String toString() {
-        return "MyFile{" +
-                "name='" + name + '\'' +
-                ", filePath='" + filePath + '\'' +
-                ", deleted=" + deleted +
-                ", allocatedBlocks=" + allocatedBlocks +
-                '}';
-    }
-
     public String getFilePath(){
         return filePath;
     }
