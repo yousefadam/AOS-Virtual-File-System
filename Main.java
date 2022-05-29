@@ -8,7 +8,7 @@ public class Main {
 
         FileDataStreamer fds  =new FileDataStreamer();
         Scanner scan = new Scanner(System.in);
-        Parser parser = new Parser();
+       
         AllocationStrategy strategy = null;
         VirtualFileSystem vfs = null;
         boolean loaded = true;
@@ -74,6 +74,7 @@ public class Main {
         boolean quit = false;
 
         while (!quit){
+            Parser parser = new Parser();
             input = scan.nextLine();
             parser.parse(input);
             String command = parser.getCmd();
@@ -128,8 +129,6 @@ public class Main {
                 default:
                     System.out.println("Invalid command");
             }
-
-
         }
 
         try {

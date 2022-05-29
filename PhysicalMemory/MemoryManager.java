@@ -52,7 +52,7 @@ public class MemoryManager implements Serializable {
         return strategy.allocate(size);
     }
 
-    public void deAllocateSpace(ArrayList<Integer> toBeDeAllocated){
+    public static void deAllocateSpace(ArrayList<Integer> toBeDeAllocated){
         for (int blockNum: toBeDeAllocated) {
             memoryDisk[blockNum] = false;
         }
@@ -64,6 +64,5 @@ public class MemoryManager implements Serializable {
                 ", Strategy = " + strategy +
                 ", MemoryDisk = "+ Arrays.toString(memoryDisk);
     }
-
 
 }
