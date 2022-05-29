@@ -17,6 +17,8 @@ public class ContiguousAllocation implements AllocationStrategy, Serializable {
 
         int start = -1, minNumBlocks = Integer.MAX_VALUE;
 
+
+
         int counter;
         for (int i = 0; i < memorySize; i++) {
             counter = 0;
@@ -47,6 +49,8 @@ public class ContiguousAllocation implements AllocationStrategy, Serializable {
             memoryDisk[i] = true;
         }
 
+
+        //TEST TO REMOVE
         MemoryManager.memoryDisk = memoryDisk;
         return allocatedBlocks;
     }

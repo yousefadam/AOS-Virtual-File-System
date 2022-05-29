@@ -58,11 +58,8 @@ public class MemoryManager implements Serializable {
         }
     }
 
-    @Override
-    public String toString(){
-        return "MemoryManager {Size = " + size +
-                ", Strategy = " + strategy +
-                ", MemoryDisk = "+ Arrays.toString(memoryDisk);
-    }
+
+
+
 
 }

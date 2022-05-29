@@ -1,8 +1,5 @@
 import java.io.Serializable;
 import java.util.ArrayList;
-import PhysicalMemory.*;
-
-import PhysicalMemory.MemoryManager;
 
 public class Directory implements Serializable {
     private String name, dirPath;
@@ -54,14 +51,15 @@ public class Directory implements Serializable {
     }
 
     //delete the directory itself
-    public void deleteDirectory(){  
+    public void deleteDirectory(){
         this.deleted = true;
 
-        for (MyFile file : files) {
+        for (MyFile file :files) {
             file.deleteFile();
-            MemoryManager.deAllocateSpace(file.getAllocatedBlocks());
         }
-        
+
+        //physical memory manager
+
         files.clear();
 
         for (Directory dir: subDirectories) {
@@ -78,17 +76,16 @@ public class Directory implements Serializable {
     }
 
     public void displayDirectoryStructure(int level){
-        String tab = "    ";
-        String tabs = "";
+        StringBuilder tabs = new StringBuilder();
         for (int i = 0; i < level; i++) {
-            tabs += tab;
+            tabs.append('\t');
         }
-        
-        System.out.println(tabs + '<'+name+'>');
 
+        System.out.println(tabs.toString() + '<'+name+'>');
 
+        tabs.append('\t');
         for (var file: files) {
-            System.out.println(tabs + "    " + file.getName());
+            System.out.println(tabs + file.getName());
         }
 
         for (var directory: subDirectories) {

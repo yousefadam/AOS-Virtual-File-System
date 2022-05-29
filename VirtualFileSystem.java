@@ -45,6 +45,7 @@ public class VirtualFileSystem implements Serializable {
 
     void displayDiskStructure() {
         root.displayDirectoryStructure(0);
+        //DISPLAY BIT VECTOR
     }
 
     boolean createFolder(String folderPath) {
@@ -97,6 +98,12 @@ public class VirtualFileSystem implements Serializable {
                 System.out.println("Invalid path");
                 return false;
             }
+        }
+
+        //file already exists
+        if(currentDir.getFile(directories[i]) != null){
+            System.out.println("A File already exists with this name!");
+            return false;
         }
 
         // file already exists
@@ -215,5 +222,6 @@ public class VirtualFileSystem implements Serializable {
         }
         System.out.println("\nTotal Free Blocks: " + counter);
     }
+
 
 }

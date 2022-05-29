@@ -5,6 +5,7 @@ public class Parser {
     String cmd;
 
     public void parse(String userInput){
+        args.clear();
         String[] splits = userInput.trim().split("\\s+");
 
         cmd = splits[0];
